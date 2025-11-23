@@ -1,0 +1,20 @@
+{
+  "name": "pokedex-cli",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "test": "vitest --run",
+    "start": "node dist/main.js",
+    "build": "npx tsc",
+    "dev": "npx tsc && node dist/main.js"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.9"
+  }
+}
