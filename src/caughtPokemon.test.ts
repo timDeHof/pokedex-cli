@@ -2,9 +2,10 @@ import { describe, expect, test, beforeEach, afterEach } from "vitest";
 import { initState } from "./state.js";
 import { commandCatch } from "./command_catch.js";
 import { commandInspect } from "./command_inspect.js";
+import { Pokemon } from "./pokemon.js";
 
 // Mock Pokemon data for testing
-const createMockPokemon = (name: string): any => ({
+const createMockPokemon = (name: string): Pokemon => ({
   id: 1,
   name,
   height: 4,
@@ -45,7 +46,7 @@ const createMockPokemon = (name: string): any => ({
 const mockPokemon1 = createMockPokemon("Pikachu");
 const mockPokemon2 = createMockPokemon("PIKACHU"); // Different case
 
-const createMockCharizard = (): any => ({
+const createMockCharizard = (): Pokemon => ({
   id: 6,
   name: "Charizard",
   height: 17,
@@ -175,19 +176,22 @@ describe("caughtPokemon Array Functionality", () => {
   });
 
   describe("Inspect Command Array Handling", () => {
+    let mockConsoleOutput: string[];
+    let originalLog: (...args: any[]) => void;
+
     beforeEach(() => {
+      mockConsoleOutput = [];
+
       // Mock console.log to capture output
-      const originalLog = console.log;
+      originalLog = console.log;
       console.log = (...args: any[]) => {
         mockConsoleOutput.push(args.join(" "));
         originalLog(...args);
       };
     });
 
-    let mockConsoleOutput: string[];
-
-    beforeEach(() => {
-      mockConsoleOutput = [];
+    afterEach(() => {
+      console.log = originalLog;
     });
 
     test("should inspect first pokemon from array when multiple exist", async () => {
@@ -227,6 +231,24 @@ describe("caughtPokemon Array Functionality", () => {
   });
 
   describe("Edge Cases", () => {
+    let mockConsoleOutput: string[];
+    let originalLog: (...args: any[]) => void;
+
+    beforeEach(() => {
+      mockConsoleOutput = [];
+
+      // Mock console.log to capture output
+      originalLog = console.log;
+      console.log = (...args: any[]) => {
+        mockConsoleOutput.push(args.join(" "));
+        originalLog(...args);
+      };
+    });
+
+    afterEach(() => {
+      console.log = originalLog;
+    });
+
     test("should handle pokemon names with leading/trailing spaces", async () => {
       await commandCatch(state, "  Pikachu  ");
 
@@ -235,17 +257,9 @@ describe("caughtPokemon Array Functionality", () => {
     });
 
     test("should handle empty state inspection", async () => {
-      const originalLog = console.log;
-      let logOutput: string[] = [];
-      console.log = (...args: any[]) => {
-        logOutput.push(args.join(" "));
-      };
-
       await commandInspect(state, "Pikachu");
 
-      expect(logOutput).toContain("You have not caught that pokemon");
-
-      console.log = originalLog;
+      expect(mockConsoleOutput).toContain("You have not caught that pokemon");
     });
 
     test("should maintain separate arrays for different normalized names", async () => {
