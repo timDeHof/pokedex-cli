@@ -2,13 +2,16 @@ import { createInterface, type Interface } from "readline";
 import { commandHelp } from "./command_help.js";
 import { commandExit } from "./command_exit.js";
 import { commandMap, commandMapb } from "./command_map.js";
-import { PokeAPI } from "./pokeapi.js";
 import { commandExplore } from "./command_explore.js";
+import { commandCatch } from "./command_catch.js";
+import { PokeAPI } from "./pokeapi.js";
+import { Pokemon } from "./pokemon.js";
+import { commandInspect } from "./command_inspect.js";
 
 export type CLICommand = {
   name: string;
   description: string;
-  callback: (state: State) => Promise<void>;
+  callback: (state: State, ...args: string[]) => Promise<void>;
 };
 export type State = {
   rl: Interface;
@@ -17,6 +20,7 @@ export type State = {
   nextLocationsURL: string | null;
   prevLocationsURL: string | null;
   currentLocation: string | null;
+  caughtPokemon: Record<string, Pokemon>;
 };
 
 export function initState(): State {
@@ -52,6 +56,16 @@ export function initState(): State {
       description: "Explore a location area",
       callback: commandExplore,
     },
+    catch: {
+      name: "catch",
+      description: "Catch a Pokemon",
+      callback: commandCatch,
+    },
+    inspect: {
+      name: "inspect",
+      description: "inspect a caught pokemon",
+      callback: commandInspect,
+    },
   };
 
   const pokeAPI = new PokeAPI();
@@ -63,5 +77,6 @@ export function initState(): State {
     nextLocationsURL: null,
     prevLocationsURL: null,
     currentLocation: null,
+    caughtPokemon: {},
   };
 }

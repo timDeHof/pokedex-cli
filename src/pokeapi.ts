@@ -1,5 +1,6 @@
 import { LocationArea } from "./LocationArea.js";
 import { Cache } from "./pokecache.js";
+import { Pokemon } from "./pokemon.js";
 
 export class PokeAPI {
   private static readonly baseURL = "https://pokeapi.co/api/v2";
@@ -45,6 +46,34 @@ export class PokeAPI {
     this.cache.add(url, data);
 
     return data;
+  }
+
+  async fetchPokemon(pokemonName: string): Promise<Pokemon> {
+    const url = `${PokeAPI.baseURL}/pokemon/${pokemonName}`;
+
+    // Check cache first
+    const cachedData = this.cache.get<Pokemon>(url);
+    if (cachedData) {
+      return cachedData;
+    }
+    try {
+      // If not cached, make the request
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      const pokemon: Pokemon = await response.json();
+
+      // Add to cache
+      this.cache.add(url, pokemon);
+
+      return pokemon;
+    } catch (e) {
+      throw new Error(
+        `Error fetching pokemon '${pokemonName}': ${(e as Error).message}`
+      );
+    }
   }
 }
 

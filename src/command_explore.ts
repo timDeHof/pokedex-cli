@@ -1,18 +1,17 @@
 import type { State } from "./state.js";
 import type { LocationArea } from "./LocationArea.js";
 
-export async function commandExplore(state: State): Promise<void> {
-  if (!state.currentLocation) {
-    console.log(
-      "No location selected. Use the 'map' command to view locations."
-    );
-    return;
+export async function commandExplore(
+  state: State,
+  ...args: string[]
+): Promise<void> {
+  if (args.length !== 1) {
+    throw new Error("you must provide a location name");
   }
 
   try {
-    const locationData: LocationArea = await state.pokeAPI.fetchLocation(
-      state.currentLocation
-    );
+    const name = args[0];
+    const locationData: LocationArea = await state.pokeAPI.fetchLocation(name);
 
     console.log(`Exploring ${locationData.name}...`);
 

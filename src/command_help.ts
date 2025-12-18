@@ -1,12 +1,12 @@
 import type { State } from "./state.js";
 
-export async function commandHelp(state: State) {
+export async function commandHelp(state: State, ...args: string[]) {
   const { commands } = state;
-  console.log("Welcome to the Pokedex!");
-  console.log("Usage:");
+
+  console.log("Welcome to the Pokedex! Here are the available commands:");
   console.log("");
 
-  Object.values(commands).forEach(command => {
-    console.log(`${command.name}: ${command.description}`);
-  });
+  for (const [name, command] of Object.entries(commands)) {
+    console.log(`${name}: ${command.description}`);
+  }
 }
