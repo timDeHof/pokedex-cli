@@ -1,9 +1,9 @@
 {
   "name": "pokedex-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "A pokedex cli",
   "license": "ISC",
-  "author": "",
+  "author": "Tim DeHof",
   "type": "module",
   "main": "dist/main.js",
   "scripts": {
