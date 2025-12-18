@@ -10,7 +10,10 @@ export async function commandExplore(
   }
 
   try {
-    const name = args[0];
+    const name = args[0].trim();
+    if (!name) {
+      throw new Error("Location name cannot be empty");
+    }
     const locationData: LocationArea = await state.pokeAPI.fetchLocation(name);
 
     console.log(`Exploring ${locationData.name}...`);

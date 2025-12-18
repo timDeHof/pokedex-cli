@@ -1,5 +1,10 @@
 import type { State } from "./state.js";
 
+// Helper function to normalize Pokémon names for consistent storage
+function normalizeName(name: string): string {
+  return name.trim().toLowerCase();
+}
+
 export async function commandCatch(
   state: State,
   ...args: string[]
@@ -21,5 +26,13 @@ export async function commandCatch(
 
   console.log(`${pokemon.name} was caught!`);
   console.log("You may now inspect it with the inspect command.");
-  state.caughtPokemon[pokemon.name] = pokemon;
+
+  // Store with normalized key for case-insensitive lookups
+  const normalizedKey = normalizeName(pokemon.name);
+
+  // Initialize array if it doesn't exist, then push the new pokemon
+  if (!state.caughtPokemon[normalizedKey]) {
+    state.caughtPokemon[normalizedKey] = [];
+  }
+  state.caughtPokemon[normalizedKey].push(pokemon);
 }

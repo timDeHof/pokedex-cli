@@ -20,7 +20,7 @@ export type State = {
   nextLocationsURL: string | null;
   prevLocationsURL: string | null;
   currentLocation: string | null;
-  caughtPokemon: Record<string, Pokemon>;
+  caughtPokemon: Record<string, Pokemon[]>;
 };
 
 export function initState(): State {
