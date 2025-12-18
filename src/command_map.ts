@@ -1,6 +1,6 @@
 import type { State } from "./state.js";
 import { LocationArea } from "./LocationArea.js";
-export async function commandMap(state: State, ...args: string[]) {
+export async function commandMap(state: State) {
   try {
     const locations = await state.pokeAPI.fetchLocations(
       state.nextLocationsURL || undefined
@@ -17,7 +17,7 @@ export async function commandMap(state: State, ...args: string[]) {
   }
 }
 
-export async function commandMapb(state: State, ...args: string[]) {
+export async function commandMapb(state: State) {
   if (!state.prevLocationsURL) {
     console.log("No previous locations to display.");
     return;

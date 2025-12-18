@@ -24,8 +24,8 @@ export async function commandInspect(
     return;
   }
 
-  // Get the first pokemon from the array (could also get the most recent)
-  const caught_pokemon = caught_pokemon_array[0];
+  // Get the most recent pokemon from the array
+  const caught_pokemon = caught_pokemon_array[caught_pokemon_array.length - 1];
 
   console.log(`Name: ${caught_pokemon.name}`);
   console.log(`Height: ${caught_pokemon.height}`);
