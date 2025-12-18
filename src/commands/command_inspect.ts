@@ -1,6 +1,6 @@
-import type { State } from "./state.js";
-import { getPokemon } from "./pokemon-service.js";
-import { formatPokemonDetails } from "./pokemon-formatter.js";
+import type { State } from "../core/state.js";
+import { getPokemon } from "../services/pokemon-service.js";
+import { formatPokemonDetails } from "../services/pokemon-formatter.js";
 
 export async function commandInspect(
   state: State,

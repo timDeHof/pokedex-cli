@@ -1,6 +1,6 @@
-import { LocationArea } from "./LocationArea.js";
+import { LocationArea } from "../types/LocationArea.js";
 import { Cache } from "./pokecache.js";
-import { Pokemon } from "./pokemon.js";
+import { Pokemon } from "../types/pokemon.js";
 
 export class PokeAPI {
   private static readonly baseURL = "https://pokeapi.co/api/v2";

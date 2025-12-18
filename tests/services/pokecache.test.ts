@@ -1,4 +1,4 @@
-import { Cache } from "./pokecache.js";
+import { Cache } from "../../src/services/pokecache.js";
 import { describe, expect, test, beforeEach, afterEach } from "vitest";
 
 describe("Cache", () => {

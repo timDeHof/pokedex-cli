@@ -1,13 +1,13 @@
 import { createInterface, type Interface } from "readline";
-import { commandHelp } from "./command_help.js";
-import { commandExit } from "./command_exit.js";
-import { commandMap, commandMapb } from "./command_map.js";
-import { commandExplore } from "./command_explore.js";
-import { commandCatch } from "./command_catch.js";
-import { PokeAPI } from "./pokeapi.js";
-import { Pokemon } from "./pokemon.js";
-import { commandInspect } from "./command_inspect.js";
-import { commandPokedex } from "./command_pokedex.js";
+import { commandHelp } from "../commands/command_help.js";
+import { commandExit } from "../commands/command_exit.js";
+import { commandMap, commandMapb } from "../commands/command_map.js";
+import { commandExplore } from "../commands/command_explore.js";
+import { commandCatch } from "../commands/command_catch.js";
+import { PokeAPI } from "../services/pokeapi.js";
+import { Pokemon } from "../types/pokemon.js";
+import { commandInspect } from "../commands/command_inspect.js";
+import { commandPokedex } from "../commands/command_pokedex.js";
 
 export type CLICommand = {
   name: string;

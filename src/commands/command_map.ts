@@ -1,5 +1,5 @@
-import type { State } from "./state.js";
-import { LocationArea } from "./LocationArea.js";
+import type { State } from "../core/state.js";
+import { LocationArea } from "../types/LocationArea.js";
 export async function commandMap(state: State) {
   try {
     const locations = await state.pokeAPI.fetchLocations(

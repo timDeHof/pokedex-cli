@@ -1,5 +1,5 @@
-import type { State } from "./state.js";
-import { normalizeName } from "./utils.js";
+import type { State } from "../core/state.js";
+import { normalizeName } from "../utils/utils.js";
 
 export async function commandCatch(
   state: State,

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { getPokemon } from "./pokemon-service.js";
-import type { Pokemon } from "./pokemon.js";
+import { getPokemon } from "../../src/services/pokemon-service.js";
+import type { Pokemon } from "../../src/types/pokemon.js";
 
 const mockPokemon: Pokemon = {
   id: 1,

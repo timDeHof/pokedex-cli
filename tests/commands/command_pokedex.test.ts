@@ -1,6 +1,6 @@
 import { describe, expect, test, vi } from "vitest";
-import { commandPokedex } from "./command_pokedex.js";
-import type { State } from "./state.js";
+import { commandPokedex } from "../../src/commands/command_pokedex.js";
+import type { State } from "../../src/core/state.js";
 
 describe("commandPokedex", () => {
   test("displays message when no pokemon caught", async () => {

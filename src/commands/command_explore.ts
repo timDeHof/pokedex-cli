@@ -1,5 +1,5 @@
-import type { State } from "./state.js";
-import type { LocationArea } from "./LocationArea.js";
+import type { State } from "../core/state.js";
+import type { LocationArea } from "../types/LocationArea.js";
 
 export async function commandExplore(
   state: State,

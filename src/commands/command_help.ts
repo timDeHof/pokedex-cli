@@ -1,4 +1,4 @@
-import type { State } from "./state.js";
+import type { State } from "../core/state.js";
 
 export async function commandHelp(state: State, ...args: string[]) {
   const { commands } = state;

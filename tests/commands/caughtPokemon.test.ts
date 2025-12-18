@@ -1,8 +1,8 @@
 import { describe, expect, test, beforeEach, afterEach } from "vitest";
-import { initState } from "./state.js";
-import { commandCatch } from "./command_catch.js";
-import { commandInspect } from "./command_inspect.js";
-import { Pokemon } from "./pokemon.js";
+import { initState } from "../../src/core/state.js";
+import { commandCatch } from "../../src/commands/command_catch.js";
+import { commandInspect } from "../../src/commands/command_inspect.js";
+import { Pokemon } from "../../src/types/pokemon.js";
 
 // Mock Pokemon data for testing
 const createMockPokemon = (name: string): Pokemon => ({

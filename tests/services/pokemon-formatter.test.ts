@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { formatPokemonDetails } from "./pokemon-formatter.js";
-import type { Pokemon } from "./pokemon.js";
+import { formatPokemonDetails } from "../../src/services/pokemon-formatter.js";
+import type { Pokemon } from "../../src/types/pokemon.js";
 
 const mockPokemon: Pokemon = {
   id: 1,

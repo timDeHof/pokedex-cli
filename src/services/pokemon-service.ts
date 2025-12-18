@@ -1,5 +1,5 @@
-import type { Pokemon } from "./pokemon.js";
-import { normalizeName } from "./utils.js";
+import type { Pokemon } from "../types/pokemon.js";
+import { normalizeName } from "../utils/utils.js";
 
 export function getPokemon(
   caughtPokemon: Record<string, Pokemon[]>,
