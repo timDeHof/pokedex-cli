@@ -12,10 +12,6 @@
     "build": "npx tsc --project tsconfig.build.json",
     "dev": "npx tsc && node dist/main.js"
   },
-  "files": [
-    "dist",
-    "!dist/**/*.test.ts"
-  ],
   "devDependencies": {
     "@types/node": "^24.10.1",
     "typescript": "^5.9.3",
