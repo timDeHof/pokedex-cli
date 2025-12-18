@@ -1,9 +1,6 @@
 import type { State } from "./state.js";
-
-// Helper function to normalize Pokémon names for case-insensitive lookups
-function normalizeName(name: string): string {
-  return name.trim().toLowerCase();
-}
+import { getPokemon } from "./pokemon-service.js";
+import { formatPokemonDetails } from "./pokemon-formatter.js";
 
 export async function commandInspect(
   state: State,
@@ -13,29 +10,12 @@ export async function commandInspect(
     throw new Error("you must provide a pokemon name");
   }
 
-  const name = args[0];
-  const normalizedName = normalizeName(name);
-
-  // Direct lookup using normalized key (since storage now uses normalized keys)
-  const caught_pokemon_array = state.caughtPokemon[normalizedName];
-
-  if (!caught_pokemon_array || caught_pokemon_array.length === 0) {
+  const pokemon = getPokemon(state.caughtPokemon, args[0]);
+  
+  if (!pokemon) {
     console.log("You have not caught that pokemon");
     return;
   }
 
-  // Get the most recent pokemon from the array
-  const caught_pokemon = caught_pokemon_array[caught_pokemon_array.length - 1];
-
-  console.log(`Name: ${caught_pokemon.name}`);
-  console.log(`Height: ${caught_pokemon.height}`);
-  console.log(`Weight: ${caught_pokemon.weight}`);
-  console.log("Stats:");
-  for (const stat of caught_pokemon.stats) {
-    console.log(`  - ${stat.stat.name}: ${stat.base_stat}`);
-  }
-  console.log("Types:");
-  for (const typeInfo of caught_pokemon.types) {
-    console.log("  - ", typeInfo.type.name);
-  }
+  console.log(formatPokemonDetails(pokemon));
 }

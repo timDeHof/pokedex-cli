@@ -1,9 +1,5 @@
 import type { State } from "./state.js";
-
-// Helper function to normalize Pokémon names for consistent storage
-function normalizeName(name: string): string {
-  return name.trim().toLowerCase();
-}
+import { normalizeName } from "./utils.js";
 
 export async function commandCatch(
   state: State,

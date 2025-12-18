@@ -200,7 +200,8 @@ describe("caughtPokemon Array Functionality", () => {
 
       await commandInspect(state, "pikachu");
 
-      expect(mockConsoleOutput).toContain("Name: Pikachu"); // First one
+      const output = mockConsoleOutput.join(" ");
+      expect(output).toContain("Name: pikachu"); // First one
     });
 
     test("should handle inspect for single pokemon in array", async () => {
@@ -208,11 +209,12 @@ describe("caughtPokemon Array Functionality", () => {
 
       await commandInspect(state, "charizard");
 
-      expect(mockConsoleOutput).toContain("Name: Charizard");
-      expect(mockConsoleOutput).toContain("Height: 17");
-      expect(mockConsoleOutput).toContain("Weight: 905");
-      expect(mockConsoleOutput).toContain("Stats:");
-      expect(mockConsoleOutput).toContain("Types:");
+      const output = mockConsoleOutput.join(" ");
+      expect(output).toContain("Name: charizard");
+      expect(output).toContain("Height: 17");
+      expect(output).toContain("Weight: 905");
+      expect(output).toContain("Stats:");
+      expect(output).toContain("Types:");
     });
 
     test("should show error for non-existent pokemon", async () => {
@@ -226,7 +228,8 @@ describe("caughtPokemon Array Functionality", () => {
 
       await commandInspect(state, "PIKACHU");
 
-      expect(mockConsoleOutput).toContain("Name: Pikachu");
+      const output = mockConsoleOutput.join(" ");
+      expect(output).toContain("Name: pikachu");
     });
   });
 
