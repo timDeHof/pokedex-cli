@@ -9,12 +9,32 @@
   "scripts": {
     "test": "vitest --run",
     "start": "node dist/main.js",
-    "build": "npx tsc --project tsconfig.build.json",
-    "dev": "npx tsc && node dist/main.js"
+    "build": "tsc --project tsconfig.build.json",
+    "build:watch": "tsc --project tsconfig.build.json --watch",
+    "dev": "npm run build && node dist/main.js",
+    "dev:watch": "npm run build:watch & node dist/main.js",
+    "dev:interactive": "npm run build && node --interactive dist/main.js",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.9"
+  },
+  "dependencies": {
+    "@inkjs/ui": "^2.0.0",
+    "commander": "^14.0.2",
+    "ink": "^6.5.1",
+    "ink-big-text": "^2.0.0",
+    "ink-gradient": "^3.0.0",
+    "react": "^19.2.3"
   }
 }
